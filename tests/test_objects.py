@@ -1,4 +1,4 @@
-""" pytest for objects in _objects.py"""
+""" pytest for objects declared in _objects.py"""
 
 import numpy as np
 import pytest
