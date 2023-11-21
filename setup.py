@@ -1,4 +1,4 @@
-"""Setup/build/install script for nldesa."""
+"""Setup/build/install script for optrix."""
 
 import os
 
@@ -14,12 +14,12 @@ with open(os.path.join(here, "requirements.txt"), encoding="utf-8") as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="Optrix",
-    version="0.0.1",
-    description=("A package with tools to compute ray tracing using Matrix Optics."),
+    name="optrix",
+    version="0.0.1a1",
+    description=("A package for calculating ray propagation using matrix methods."),
     long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/joaopedrobiu6/Optrix/",
+    long_description_content_type="text/x-rst",
+    url="https://github.com/joaopedrobiu6/optrix",
     author="João Pedro Ferreira Biu",
     author_email="joaopedrofbiu@tecnico.ulisboa.pt",
     license="MIT",
@@ -36,13 +36,13 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Scientific/Engineering :: Mathematics",
     ],
-    keywords="optics, ray tracing, matrix optics",
-    packages=find_packages(exclude=["docs", "tests", "local", "report"]),
+    keywords="optics, matrix, ray, propagation, paraxial, raytracing",
+    packages=find_packages(exclude=["docs", "tests", "examples"]),
     include_package_data=True,
     install_requires=requirements,
     python_requires=">=3.8",
     project_urls={
-        "Issues Tracker": "https://github.com/joaopedrobiu6/Optrix/issues/",
-        "Source Code": "https://github.com/joaopedrobiu6/Optrix/",
+        "Issues Tracker": "https://github.com/joaopedrobiu6/optrix/issues",
+        "Source Code": "https://github.com/joaopedrobiu6/optrix/",
     },
 )

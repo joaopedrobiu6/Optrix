@@ -1,1 +1,1 @@
-from ._objects import OpticalObject, ThinLens, Mirror, FreeSpace, Boundary
+from ._objects import OpticalObject, ThinLens, Mirror, FreeSpace, Boundary, System
