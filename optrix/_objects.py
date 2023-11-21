@@ -19,7 +19,7 @@ class OpticalObject:
         return f"{self.__class__.__name__}({self.name})"
     
     def __mul__(self, obj1):
-        return np.dot(self.Matrix, obj1.Matrix)
+        return np.dot(self.Matrix, obj1)
     
 class ThinLens(OpticalObject):
     """ Thin Lens object
@@ -164,9 +164,9 @@ class Boundary(OpticalObject):
         self.name = name
         self._radius = radius
         if radius is not None:
-            self._Matrix = np.array([[1, 0], [- (self.n2 - self.n1) / (self.n2 * self.radius), self.n1 / self.n2]])
+            self._Matrix = np.array([[1, 0], [- (self._n2 - self._n1) / (self._n2 * self._radius), self._n1 / self._n2]])
         else:
-            self._Matrix = np.array([[1, 0], [0, self.n1 / self.n2]])
+            self._Matrix = np.array([[1, 0], [0, self._n1 / self._n2]])
 
     @property
     def n1(self):
@@ -195,9 +195,9 @@ class Boundary(OpticalObject):
     @property
     def Matrix(self):
         if self._radius is not None:
-            return np.array([[1, 0], [- (self.n2 - self.n1) / (self.n2 * self.radius), self.n1 / self.n2]])
+            return np.array([[1, 0], [- (self._n2 - self._n1) / (self._n2 * self._radius), self._n1 / self._n2]])
         else:
-            return np.array([[1, 0], [0, self.n1 / self.n2]])   
+            return np.array([[1, 0], [0, self._n1 / self._n2]])   
             
 class System(OpticalObject):
     """ System object
