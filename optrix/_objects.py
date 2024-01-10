@@ -269,3 +269,39 @@ class Object(OpticalObject):
     @distance.setter
     def distance(self, value):
         self._distance = value
+
+class GaussianBeam:
+    def __init__(self, wavelength, w0, A0):
+        self.wavelength = wavelength
+        self.w0 = w0
+        self.A0 = A0
+
+    def z0(self):
+        return np.pi*self.w0**2/self.wavelength
+
+    def w(self, z):   
+        return self.w0*np.sqrt(1+(z/self.z0())**2)
+        
+    def R(self, z):
+        return z*(1+(self.z0()/(z + 1e-15))**2)
+        
+    def zeta(self, z):
+        return np.arctan(z/self.z0())
+
+    def wavefunction(self, x, y, z):
+        rho = np.sqrt(x**2 + y**2)
+        A0 = self.A0
+        w0 = self.w0
+        w = self.w(z)
+        k = 2*np.pi/self.wavelength
+        R = self.R(z)
+        zeta = self.zeta(z)
+        return A0*(w0/w)*np.exp(-rho**2/(w**2 + 1e-15))*np.exp(-1j*k*(rho**2)/(2*R + 1e-15))*np.exp(1j*zeta)
+
+    def wavefunction_in_0(self, x, y):
+        A0 = self.A0
+        w0 = self.w0
+        return A0*np.exp(-(x**2+y**2)/w0**2 + 1e-15)
+
+    def intensity(self, x, y, z):
+        return np.abs(self.wavefunction(x, y, z))**2
