@@ -4,4 +4,4 @@ dist/
 *.egg-info
 *.json
 *.ipynb
-/optics_project
+optics_project/
